@@ -892,8 +892,7 @@
       "http" : {
         "method" : "GET",
         "requestUri" : "/v1/apps/{application-id}",
-        "responseCode" : 200,
-        "stream_content" : 1
+        "responseCode" : 200
       },
       "input" : {
         "shape" : "GetAppRequest"
@@ -928,8 +927,7 @@
       "http" : {
         "method" : "GET",
         "requestUri" : "/v1/apps/{application-id}/settings",
-        "responseCode" : 200,
-        "stream_content" : 1
+        "responseCode" : 200
       },
       "input" : {
         "shape" : "GetApplicationSettingsRequest"
@@ -964,8 +962,7 @@
       "http" : {
         "method" : "GET",
         "requestUri" : "/v1/apps",
-        "responseCode" : 200,
-        "stream_content" : 1
+        "responseCode" : 200
       },
       "input" : {
         "shape" : "GetAppsRequest"
@@ -5257,8 +5254,7 @@
           "documentation" : "The unique ID of your Amazon Pinpoint application."
         }
       },
-      "required" : [ "ApplicationId" ],
-      "payload" : "ApplicationResponse"
+      "required" : [ "ApplicationId" ]
     },
     "GetAppResponse" : {
       "type" : "structure",
@@ -5267,7 +5263,8 @@
           "shape" : "ApplicationResponse"
         }
       },
-      "required" : [ "ApplicationResponse" ]
+      "required" : [ "ApplicationResponse" ],
+      "payload" : "ApplicationResponse"
     },
     "GetApplicationSettingsRequest" : {
       "type" : "structure",
@@ -5279,8 +5276,7 @@
           "documentation" : "The unique ID of your Amazon Pinpoint application."
         }
       },
-      "required" : [ "ApplicationId" ],
-      "payload" : "ApplicationSettingsResource"
+      "required" : [ "ApplicationId" ]
     },
     "GetApplicationSettingsResponse" : {
       "type" : "structure",
@@ -5289,7 +5285,8 @@
           "shape" : "ApplicationSettingsResource"
         }
       },
-      "required" : [ "ApplicationSettingsResource" ]
+      "required" : [ "ApplicationSettingsResource" ],
+      "payload" : "ApplicationSettingsResource"
     },
     "GetAppsRequest" : {
       "type" : "structure",
@@ -5306,18 +5303,22 @@
           "locationName" : "token",
           "documentation" : "The NextToken string returned on a previous page that you use to get the next page of results in a paginated response."
         }
-      },
-      "payload" : "ApplicationsResponse"
+      }
     },
     "GetAppsResponse" : {
       "type" : "structure",
       "members" : {
-        "ApplicationsResponse" : {
-          "shape" : "ApplicationsResponse"
+        "Item" : {
+          "shape" : "ListOfApplicationResponse",
+          "documentation" : "A list of applications"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "documentation" : "The string that you use in a subsequent request to get the next page of results in a paginated response."
         }
       },
       "documentation" : "Application list.",
-      "required" : [ "ApplicationsResponse" ]
+      "required" : [ ]
     },
     "GetBaiduChannelRequest" : {
       "type" : "structure",
