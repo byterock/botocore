@@ -23,7 +23,7 @@
         "shape" : "CreateAppRequest"
       },
       "output" : {
-        "shape" : "CreateAppResponse",
+        "shape" : "ApplicationResponse",
         "documentation" : "201 response"
       },
       "errors" : [ {
@@ -58,7 +58,7 @@
         "shape" : "CreateCampaignRequest"
       },
       "output" : {
-        "shape" : "CreateCampaignResponse",
+        "shape" : "CampaignResponse",
         "documentation" : "201 response"
       },
       "errors" : [ {
@@ -93,7 +93,7 @@
         "shape" : "CreateExportJobRequest"
       },
       "output" : {
-        "shape" : "CreateExportJobResponse",
+        "shape" : "ExportJobResponse",
         "documentation" : "202 response"
       },
       "errors" : [ {
@@ -128,7 +128,7 @@
         "shape" : "CreateImportJobRequest"
       },
       "output" : {
-        "shape" : "CreateImportJobResponse",
+        "shape" : "ImportJobResponse",
         "documentation" : "201 response"
       },
       "errors" : [ {
@@ -163,7 +163,7 @@
         "shape" : "CreateSegmentRequest"
       },
       "output" : {
-        "shape" : "CreateSegmentResponse",
+        "shape" : "SegmentResponse",
         "documentation" : "201 response"
       },
       "errors" : [ {
@@ -198,7 +198,7 @@
         "shape" : "DeleteAdmChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteAdmChannelResponse",
+        "shape" : "ADMChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -233,7 +233,7 @@
         "shape" : "DeleteApnsChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteApnsChannelResponse",
+        "shape" : "APNSChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -268,7 +268,7 @@
         "shape" : "DeleteApnsSandboxChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteApnsSandboxChannelResponse",
+        "shape" : "APNSSandboxChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -303,7 +303,7 @@
         "shape" : "DeleteApnsVoipChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteApnsVoipChannelResponse",
+        "shape" : "APNSVoipChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -338,7 +338,7 @@
         "shape" : "DeleteApnsVoipSandboxChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteApnsVoipSandboxChannelResponse",
+        "shape" : "APNSVoipSandboxChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -373,7 +373,7 @@
         "shape" : "DeleteAppRequest"
       },
       "output" : {
-        "shape" : "DeleteAppResponse",
+        "shape" : "ApplicationResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -408,7 +408,7 @@
         "shape" : "DeleteBaiduChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteBaiduChannelResponse",
+        "shape" : "BaiduChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -443,7 +443,7 @@
         "shape" : "DeleteCampaignRequest"
       },
       "output" : {
-        "shape" : "DeleteCampaignResponse",
+        "shape" : "CampaignResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -478,7 +478,7 @@
         "shape" : "DeleteEmailChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteEmailChannelResponse",
+        "shape" : "EmailChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -513,7 +513,7 @@
         "shape" : "DeleteEndpointRequest"
       },
       "output" : {
-        "shape" : "DeleteEndpointResponse",
+        "shape" : "EndpointResponse",
         "documentation" : "202 response"
       },
       "errors" : [ {
@@ -548,7 +548,7 @@
         "shape" : "DeleteEventStreamRequest"
       },
       "output" : {
-        "shape" : "DeleteEventStreamResponse",
+        "shape" : "EventStream",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -583,7 +583,7 @@
         "shape" : "DeleteGcmChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteGcmChannelResponse",
+        "shape" : "GCMChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -618,7 +618,7 @@
         "shape" : "DeleteSegmentRequest"
       },
       "output" : {
-        "shape" : "DeleteSegmentResponse",
+        "shape" : "SegmentResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -653,7 +653,7 @@
         "shape" : "DeleteSmsChannelRequest"
       },
       "output" : {
-        "shape" : "DeleteSmsChannelResponse",
+        "shape" : "SMSChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -688,7 +688,7 @@
         "shape" : "DeleteUserEndpointsRequest"
       },
       "output" : {
-        "shape" : "DeleteUserEndpointsResponse",
+        "shape" : "EndpointsResponse",
         "documentation" : "202 response"
       },
       "errors" : [ {
@@ -723,7 +723,7 @@
         "shape" : "GetAdmChannelRequest"
       },
       "output" : {
-        "shape" : "GetAdmChannelResponse",
+        "shape" : "ADMChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -898,7 +898,7 @@
         "shape" : "GetAppRequest"
       },
       "output" : {
-        "shape" : "GetAppResponse",
+        "shape" : "ApplicationResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -933,7 +933,7 @@
         "shape" : "GetApplicationSettingsRequest"
       },
       "output" : {
-        "shape" : "GetApplicationSettingsResponse",
+        "shape" : "ApplicationSettingsResource",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -968,7 +968,7 @@
         "shape" : "GetAppsRequest"
       },
       "output" : {
-        "shape" : "GetAppsResponse",
+        "shape" : "ApplicationsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1493,7 +1493,7 @@
         "shape" : "GetImportJobsRequest"
       },
       "output" : {
-        "shape" : "GetImportJobsResponse",
+        "shape" : "ImportJobsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -5305,7 +5305,7 @@
         }
       }
     },
-    "GetAppsResponse" : {
+    "GetAppsResponse_old" : {
       "type" : "structure",
       "members" : {
         "Item" : {
