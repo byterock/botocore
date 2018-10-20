@@ -1528,7 +1528,7 @@
         "shape" : "GetSegmentRequest"
       },
       "output" : {
-        "shape" : "GetSegmentResponse",
+        "shape" : "SegmentResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1563,7 +1563,7 @@
         "shape" : "GetSegmentExportJobsRequest"
       },
       "output" : {
-        "shape" : "GetSegmentExportJobsResponse",
+        "shape" : "ExportJobsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1598,7 +1598,7 @@
         "shape" : "GetSegmentImportJobsRequest"
       },
       "output" : {
-        "shape" : "GetSegmentImportJobsResponse",
+        "shape" : "ImportJobsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1633,7 +1633,7 @@
         "shape" : "GetSegmentVersionRequest"
       },
       "output" : {
-        "shape" : "GetSegmentVersionResponse",
+        "shape" : "SegmentResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1668,7 +1668,7 @@
         "shape" : "GetSegmentVersionsRequest"
       },
       "output" : {
-        "shape" : "GetSegmentVersionsResponse",
+        "shape" : "SegmentsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1703,7 +1703,7 @@
         "shape" : "GetSegmentsRequest"
       },
       "output" : {
-        "shape" : "GetSegmentsResponse",
+        "shape" : "SegmentsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1738,7 +1738,7 @@
         "shape" : "GetSmsChannelRequest"
       },
       "output" : {
-        "shape" : "GetSmsChannelResponse",
+        "shape" : "SMSChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1773,7 +1773,7 @@
         "shape" : "GetUserEndpointsRequest"
       },
       "output" : {
-        "shape" : "GetUserEndpointsResponse",
+        "shape" : "EndpointsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1808,7 +1808,7 @@
         "shape" : "PhoneNumberValidateRequest"
       },
       "output" : {
-        "shape" : "PhoneNumberValidateResponse",
+        "shape" : "NumberValidateResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1843,7 +1843,7 @@
         "shape" : "PutEventStreamRequest"
       },
       "output" : {
-        "shape" : "PutEventStreamResponse",
+        "shape" : "EventStream",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1878,7 +1878,7 @@
         "shape" : "PutEventsRequest"
       },
       "output" : {
-        "shape" : "PutEventsResponse",
+        "shape" : "EventsResponse",
         "documentation" : "202 response"
       },
       "errors" : [ {
@@ -1913,7 +1913,7 @@
         "shape" : "RemoveAttributesRequest"
       },
       "output" : {
-        "shape" : "RemoveAttributesResponse",
+        "shape" : "AttributesResource",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1948,7 +1948,7 @@
         "shape" : "SendMessagesRequest"
       },
       "output" : {
-        "shape" : "SendMessagesResponse",
+        "shape" : "MessageResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1983,7 +1983,7 @@
         "shape" : "SendUsersMessagesRequest"
       },
       "output" : {
-        "shape" : "SendUsersMessagesResponse",
+        "shape" : "SendUsersMessageResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2018,7 +2018,7 @@
         "shape" : "UpdateAdmChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateAdmChannelResponse",
+        "shape" : "ADMChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2053,7 +2053,7 @@
         "shape" : "UpdateApnsChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateApnsChannelResponse",
+        "shape" : "APNSChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2088,7 +2088,7 @@
         "shape" : "UpdateApnsSandboxChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateApnsSandboxChannelResponse",
+        "shape" : "APNSSandboxChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2123,7 +2123,7 @@
         "shape" : "UpdateApnsVoipChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateApnsVoipChannelResponse",
+        "shape" : "APNSVoipChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2158,7 +2158,7 @@
         "shape" : "UpdateApnsVoipSandboxChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateApnsVoipSandboxChannelResponse",
+        "shape" : "APNSVoipSandboxChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2193,7 +2193,7 @@
         "shape" : "UpdateApplicationSettingsRequest"
       },
       "output" : {
-        "shape" : "UpdateApplicationSettingsResponse",
+        "shape" : "ApplicationSettingsResource",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2228,7 +2228,7 @@
         "shape" : "UpdateBaiduChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateBaiduChannelResponse",
+        "shape" : "BaiduChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2263,7 +2263,7 @@
         "shape" : "UpdateCampaignRequest"
       },
       "output" : {
-        "shape" : "UpdateCampaignResponse",
+        "shape" : "CampaignResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2298,7 +2298,7 @@
         "shape" : "UpdateEmailChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateEmailChannelResponse",
+        "shape" : "EmailChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2333,7 +2333,7 @@
         "shape" : "UpdateEndpointRequest"
       },
       "output" : {
-        "shape" : "UpdateEndpointResponse",
+        "shape" : "MessageBody",
         "documentation" : "202 response"
       },
       "errors" : [ {
@@ -2368,7 +2368,7 @@
         "shape" : "UpdateEndpointsBatchRequest"
       },
       "output" : {
-        "shape" : "UpdateEndpointsBatchResponse",
+        "shape" : "MessageBody",
         "documentation" : "202 response"
       },
       "errors" : [ {
@@ -2403,7 +2403,7 @@
         "shape" : "UpdateGcmChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateGcmChannelResponse",
+        "shape" : "GCMChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2438,7 +2438,7 @@
         "shape" : "UpdateSegmentRequest"
       },
       "output" : {
-        "shape" : "UpdateSegmentResponse",
+        "shape" : "SegmentResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -2473,7 +2473,7 @@
         "shape" : "UpdateSmsChannelRequest"
       },
       "output" : {
-        "shape" : "UpdateSmsChannelResponse",
+        "shape" : "SMSChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
