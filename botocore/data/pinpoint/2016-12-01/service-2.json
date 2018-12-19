@@ -1283,7 +1283,7 @@
         "shape" : "GetEndpointRequest"
       },
       "output" : {
-        "shape" : "GetEndpointResponse",
+        "shape" : "EndpointResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -5304,21 +5304,6 @@
           "documentation" : "The NextToken string returned on a previous page that you use to get the next page of results in a paginated response."
         }
       }
-    },
-    "GetAppsResponse_old" : {
-      "type" : "structure",
-      "members" : {
-        "Item" : {
-          "shape" : "ListOfApplicationResponse",
-          "documentation" : "A list of applications"
-        },
-        "NextToken" : {
-          "shape" : "__string",
-          "documentation" : "The string that you use in a subsequent request to get the next page of results in a paginated response."
-        }
-      },
-      "documentation" : "Application list.",
-      "required" : [ ]
     },
     "GetBaiduChannelRequest" : {
       "type" : "structure",
