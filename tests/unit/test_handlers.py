@@ -24,6 +24,7 @@ import botocore.session
 from botocore.compat import OrderedDict
 from botocore.exceptions import ParamValidationError, MD5UnavailableError
 from botocore.exceptions import AliasConflictParameterError
+from botocore.exceptions import MissingServiceIdError
 from botocore.awsrequest import AWSRequest
 from botocore.compat import quote, six
 from botocore.config import Config
@@ -31,8 +32,10 @@ from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.params import RequestParamsDocumenter
 from botocore.docs.example import RequestExampleDocumenter
 from botocore.hooks import HierarchicalEmitter
+from botocore.loaders import Loader
 from botocore.model import OperationModel, ServiceModel, ServiceId
 from botocore.model import DenormalizedStructureBuilder
+from botocore.session import Session
 from botocore.signers import RequestSigner
 from botocore.credentials import Credentials
 from botocore import handlers
@@ -549,42 +552,6 @@ class TestHandlers(BaseSessionTest):
                   'UserData': b64_user_data}
         self.assertEqual(params, result)
 
-    def test_register_retry_for_handlers_with_no_metadata(self):
-        no_endpoint_prefix = {'metadata': {}}
-        session = mock.Mock()
-        handlers.register_retries_for_service(service_data=no_endpoint_prefix,
-                                              session=mock.Mock(),
-                                              service_name='foo')
-        self.assertFalse(session.register.called)
-
-    def test_register_retry_handlers(self):
-        service_data = {
-            'metadata': {
-                'endpointPrefix': 'foo',
-                'serviceId': 'foo',
-            },
-        }
-        session = mock.Mock()
-        loader = mock.Mock()
-        session.get_component.return_value = loader
-        loader.load_data.return_value = {
-            'retry': {
-                '__default__': {
-                    'max_attempts': 10,
-                    'delay': {
-                        'type': 'exponential',
-                        'base': 2,
-                        'growth_factor': 5,
-                    },
-                },
-            },
-        }
-        handlers.register_retries_for_service(service_data=service_data,
-                                              session=session,
-                                              service_name='foo')
-        session.register.assert_called_with('needs-retry.foo', mock.ANY,
-                                            unique_id='retry-config-foo')
-
     def test_get_template_has_error_response(self):
         original = {'Error': {'Code': 'Message'}}
         handler_input = copy.deepcopy(original)
@@ -889,7 +856,7 @@ class TestHandlers(BaseSessionTest):
         }
         handlers.decode_list_object_v2(parsed, context={})
         self.assertEqual(parsed['Contents'][0]['Key'], u'%C3%A7%C3%B6s%25asd')
-        
+
     def test_decode_list_objects_v2_with_delimiter(self):
         parsed = {
             'Delimiter': "%C3%A7%C3%B6s%25%20asd%08+c",
@@ -907,7 +874,7 @@ class TestHandlers(BaseSessionTest):
         context = {'encoding_type_auto_set': True}
         handlers.decode_list_object_v2(parsed, context=context)
         self.assertEqual(parsed['Prefix'], u'\xe7\xf6s% asd\x08 c')
-        
+
     def test_decode_list_objects_v2_does_not_decode_continuationtoken(self):
         parsed = {
             'ContinuationToken': "%C3%A7%C3%B6s%25%20asd%08+c",
@@ -917,7 +884,7 @@ class TestHandlers(BaseSessionTest):
         handlers.decode_list_object_v2(parsed, context=context)
         self.assertEqual(
             parsed['ContinuationToken'], u"%C3%A7%C3%B6s%25%20asd%08+c")
-        
+
     def test_decode_list_objects_v2_with_startafter(self):
         parsed = {
             'StartAfter': "%C3%A7%C3%B6s%25%20asd%08+c",
@@ -926,7 +893,7 @@ class TestHandlers(BaseSessionTest):
         context = {'encoding_type_auto_set': True}
         handlers.decode_list_object_v2(parsed, context=context)
         self.assertEqual(parsed['StartAfter'], u'\xe7\xf6s% asd\x08 c')
-        
+
     def test_decode_list_objects_v2_with_common_prefixes(self):
         parsed = {
             'CommonPrefixes': [{'Prefix': "%C3%A7%C3%B6s%25%20asd%08+c"}],
@@ -936,7 +903,7 @@ class TestHandlers(BaseSessionTest):
         handlers.decode_list_object_v2(parsed, context=context)
         self.assertEqual(parsed['CommonPrefixes'][0]['Prefix'],
                          u'\xe7\xf6s% asd\x08 c')
-        
+
     def test_get_bucket_location_optional(self):
         # This handler should no-op if another hook (i.e. stubber) has already
         # filled in response
@@ -1034,10 +1001,12 @@ class TestRetryHandlerOrder(BaseSessionTest):
         return names
 
     def test_s3_special_case_is_before_other_retry(self):
+        client = self.session.create_client('s3')
         service_model = self.session.get_service_model('s3')
         operation = service_model.operation_model('CopyObject')
-        responses = self.session.emit(
+        responses = client.meta.events.emit(
             'needs-retry.s3.CopyObject',
+            request_dict={},
             response=(mock.Mock(), mock.Mock()), endpoint=mock.Mock(),
             operation=operation, attempts=1, caught_exception=None)
         # This is implementation specific, but we're trying to verify that
@@ -1330,3 +1299,36 @@ class TestCommandAlias(unittest.TestCase):
 
         response = alias(client=client)()
         self.assertEqual(response, 'bar')
+
+
+class TestPrependToHost(unittest.TestCase):
+    def setUp(self):
+        self.hoister = handlers.HeaderToHostHoister('test-header')
+
+    def _prepend_to_host(self, url, prepend_string):
+        params = {
+            'headers': {
+                'test-header': prepend_string,
+            },
+            'url': url,
+        }
+        self.hoister.hoist(params=params)
+        return params['url']
+
+    def test_does_prepend_to_host(self):
+        prepended = self._prepend_to_host('https://bar.example.com/', 'foo')
+        self.assertEqual(prepended, 'https://foo.bar.example.com/')
+
+    def test_does_prepend_to_host_with_http(self):
+        prepended = self._prepend_to_host('http://bar.example.com/', 'foo')
+        self.assertEqual(prepended, 'http://foo.bar.example.com/')
+
+    def test_does_prepend_to_host_with_path(self):
+        prepended = self._prepend_to_host(
+            'https://bar.example.com/path', 'foo')
+        self.assertEqual(prepended, 'https://foo.bar.example.com/path')
+
+    def test_does_prepend_to_host_with_more_components(self):
+        prepended = self._prepend_to_host(
+            'https://bar.baz.example.com/path', 'foo')
+        self.assertEqual(prepended, 'https://foo.bar.baz.example.com/path')

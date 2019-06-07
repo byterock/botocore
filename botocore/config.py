@@ -35,12 +35,12 @@ class Config(object):
     :param user_agent_extra: The value to append to the current User-Agent
         header value.
 
-    :type connect_timeout: int
+    :type connect_timeout: float or int
     :param connect_timeout: The time in seconds till a timeout exception is
         thrown when attempting to make a connection. The default is 60
         seconds.
 
-    :type read_timeout: int
+    :type read_timeout: float or int
     :param read_timeout: The time in seconds till a timeout exception is
         thrown when attempting to read from a connection. The default is
         60 seconds.
@@ -113,6 +113,15 @@ class Config(object):
         client_cert should be set to a tuple of length two where the first
         element is the path to the client certificate and the second element is
         the path to the certificate key.
+
+    :type inject_host_prefix: bool
+    :param inject_host_prefix: Whether host prefix injection should occur.
+
+        Defaults to True.
+
+        Setting this to False disables the injection of operation parameters
+        into the prefix of the hostname. This is useful for clients providing
+        custom endpoints that should not have their host prefix modified.
     """
     OPTION_DEFAULTS = OrderedDict([
         ('region_name', None),
@@ -127,6 +136,8 @@ class Config(object):
         ('s3', None),
         ('retries', None),
         ('client_cert', None),
+        ('inject_host_prefix', True),
+        ('endpoint_discovery_enabled', None),
     ])
 
     def __init__(self, *args, **kwargs):

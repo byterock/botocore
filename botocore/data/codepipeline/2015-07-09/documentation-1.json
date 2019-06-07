@@ -17,9 +17,11 @@
          "GetPipelineExecution" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/GetPipelineExecution",
          "GetPipelineState" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/GetPipelineState",
          "GetThirdPartyJobDetails" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/GetThirdPartyJobDetails",
+         "ListActionExecutions" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/ListActionExecutions",
          "ListActionTypes" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/ListActionTypes",
          "ListPipelineExecutions" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/ListPipelineExecutions",
          "ListPipelines" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/ListPipelines",
+         "ListTagsForResource" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/ListTagsForResource",
          "ListWebhooks" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/ListWebhooks",
          "PollForJobs" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/PollForJobs",
          "PollForThirdPartyJobs" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/PollForThirdPartyJobs",
@@ -33,6 +35,8 @@
          "RegisterWebhookWithThirdParty" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/RegisterWebhookWithThirdParty",
          "RetryStageExecution" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/RetryStageExecution",
          "StartPipelineExecution" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/StartPipelineExecution",
+         "TagResource" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/TagResource",
+         "UntagResource" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/UntagResource",
          "UpdatePipeline" : "https://docs.aws.amazon.com/goto/WebAPI/codepipeline/UpdatePipeline"
       }
    }

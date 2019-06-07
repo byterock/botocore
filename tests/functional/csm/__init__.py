@@ -10,10 +10,3 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import BaseSessionTest
-
-class TestKinesis(BaseSessionTest):
-    def test_subscribe_to_shard_removed(self):
-        kinesis = self.session.create_client('kinesis', 'us-west-2')
-        with self.assertRaises(AttributeError):
-            kinesis.subscribe_to_shard

@@ -27,6 +27,7 @@ from botocore.exceptions import InvalidExpressionError, ConfigNotFound
 from botocore.exceptions import ClientError, ConnectionClosedError
 from botocore.exceptions import InvalidDNSNameError, MetadataRetrievalError
 from botocore.model import ServiceModel
+from botocore.utils import ensure_boolean
 from botocore.utils import is_json_value_header
 from botocore.utils import remove_dot_segments
 from botocore.utils import normalize_url_path
@@ -54,10 +55,28 @@ from botocore.utils import switch_host_s3_accelerate
 from botocore.utils import deep_merge
 from botocore.utils import S3RegionRedirector
 from botocore.utils import ContainerMetadataFetcher
+from botocore.utils import IMDSFetcher
 from botocore.utils import InstanceMetadataFetcher
 from botocore.model import DenormalizedStructureBuilder
 from botocore.model import ShapeResolver
 from botocore.config import Config
+
+
+class TestEnsureBoolean(unittest.TestCase):
+    def test_boolean_true(self):
+        self.assertEqual(ensure_boolean(True), True)
+
+    def test_boolean_false(self):
+        self.assertEqual(ensure_boolean(False), False)
+
+    def test_string_true(self):
+        self.assertEqual(ensure_boolean('True'), True)
+
+    def test_string_false(self):
+        self.assertEqual(ensure_boolean('False'), False)
+
+    def test_string_lowercase_true(self):
+        self.assertEqual(ensure_boolean('true'), True)
 
 
 class TestIsJSONValueHeader(unittest.TestCase):
@@ -1702,8 +1721,9 @@ class TestContainerMetadataFetcher(unittest.TestCase):
             self.fake_response(status_code=200, body=b'Not JSON'),
         )
         fetcher = self.create_fetcher()
-        with self.assertRaises(MetadataRetrievalError):
+        with self.assertRaises(MetadataRetrievalError) as e:
             fetcher.retrieve_uri('/foo?id=1')
+        self.assertNotIn('Not JSON', str(e.exception))
         # Should have tried up to RETRY_ATTEMPTS.
         self.assertEqual(self.http.send.call_count, fetcher.RETRY_ATTEMPTS)
 
@@ -1817,7 +1837,7 @@ class TestInstanceMetadataFetcher(unittest.TestCase):
         self.add_get_role_name_imds_response()
         self.add_get_credentials_imds_response()
 
-        fetcher = InstanceMetadataFetcher(url=url, env=env)
+        fetcher = InstanceMetadataFetcher(base_url=url, env=env)
         result = fetcher.retrieve_iam_role_credentials()
 
         expected_result = {
