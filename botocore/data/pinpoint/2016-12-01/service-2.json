@@ -1248,7 +1248,7 @@
         "shape" : "GetChannelsRequest"
       },
       "output" : {
-        "shape" : "GetChannelsResponse",
+        "shape" : "ChannelsResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
@@ -1283,7 +1283,7 @@
         "shape" : "GetEmailChannelRequest"
       },
       "output" : {
-        "shape" : "GetEmailChannelResponse",
+        "shape" : "EmailChannelResponse",
         "documentation" : "200 response"
       },
       "errors" : [ {
