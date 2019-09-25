@@ -7590,7 +7590,7 @@
       "members":{
         "Days":{
           "shape":"Days",
-          "documentation":"<p>Lifetime of the active copy in days. Do not use with restores that specify OutputLocation.</p>"
+          "documentation":"<p>Lifetime of the active copy in days. Do not use with restores that specify OutputLocation.</p><p>Required if doing a restore.  Do not use when doing a SELECT request.</p>"
         },
         "GlacierJobParameters":{
           "shape":"GlacierJobParameters",
