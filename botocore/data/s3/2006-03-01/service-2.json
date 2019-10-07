@@ -5406,6 +5406,7 @@
     "MaxParts":{"type":"integer"},
     "MaxUploads":{"type":"integer"},
     "Message":{"type":"string"},
+	"httpstatus":{"type":"integer"},
     "Metadata":{
       "type":"map",
       "key":{"shape":"MetadataKey"},
@@ -7537,6 +7538,12 @@
           "documentation":"<p>Indicates the path in the provided S3 output location where Select results will be restored to.</p>",
           "location":"header",
           "locationName":"x-amz-restore-output-path"
+        },
+		"Status":{
+          "shape":"httpstatus",
+          "documentation":"<P>A successful operation returns either the 200 OK or 202 Accepted status code.</p><p>If the object copy is not previously restored, then Amazon S3 returns 202 Accepted in the response.</p><p>If the object copy is previously restored, Amazon S3 returns 200 OK in the response.</p>",
+          "location":"statusCode",
+		  "locationName":"status"
         }
       }
     },
