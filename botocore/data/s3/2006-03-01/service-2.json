@@ -3132,7 +3132,8 @@
       "members":{
         "LocationConstraint":{
           "shape":"BucketLocationConstraint",
-          "documentation":"<p/>"
+          "documentation":"<p/>",
+          "keep_root":true
         }
       }
     },
