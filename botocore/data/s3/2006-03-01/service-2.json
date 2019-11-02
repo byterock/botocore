@@ -98,7 +98,7 @@
       "name":"DeleteBucketAnalyticsConfiguration",
       "http":{
         "method":"DELETE",
-        "requestUri":"/{Bucket}?analytics",
+        "requestUri":"/{Bucket}?analytics&id={Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteBucketAnalyticsConfigurationRequest"},
@@ -269,7 +269,7 @@
       "name":"GetBucketAnalyticsConfiguration",
       "http":{
         "method":"GET",
-        "requestUri":"/{Bucket}?analytics"
+        "requestUri":"/{Bucket}?analytics&id={Id}"
       },
       "input":{"shape":"GetBucketAnalyticsConfigurationRequest"},
       "output":{"shape":"GetBucketAnalyticsConfigurationOutput"},
@@ -3004,8 +3004,8 @@
         "Id":{
           "shape":"AnalyticsId",
           "documentation":"<p>The ID that identifies the analytics configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         }
       }
     },
