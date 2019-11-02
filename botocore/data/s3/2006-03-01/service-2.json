@@ -699,9 +699,10 @@
       "name":"PutBucketAnalyticsConfiguration",
       "http":{
         "method":"PUT",
-        "requestUri":"/{Bucket}?analytics"
+        "requestUri":"/{Bucket}?analytics&id={Id}"
       },
       "input":{"shape":"PutBucketAnalyticsConfigurationRequest"},
+	  "output":{"shape":"StatusResponse"},
       "documentation":"<p>Sets an analytics configuration for the bucket (specified by the analytics configuration ID).</p>"
     },
     "PutBucketCors":{
@@ -2332,8 +2333,8 @@
         "Id":{
           "shape":"AnalyticsId",
           "documentation":"<p>The ID that identifies the analytics configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         }
       }
     },
@@ -5408,6 +5409,17 @@
     "MaxUploads":{"type":"integer"},
     "Message":{"type":"string"},
 	"httpstatus":{"type":"integer"},
+	"StatusResponse":{
+	  "type":"structure",
+      "members":{
+		  "Status":{
+          "shape":"httpstatus",
+          "documentation":"",
+          "location":"statusCode",
+          "locationName":"status"
+        }
+	  }
+    },
     "Metadata":{
       "type":"map",
       "key":{"shape":"MetadataKey"},
