@@ -6282,6 +6282,12 @@
       "type":"structure",
       "required":["Bucket"],
       "members":{
+        "ContentMD5":{
+          "shape":"ContentMD5",
+          "documentation":"<p>Addeed autmatically by Paws</p>",
+          "location":"header",
+          "locationName":"Content-MD5"
+        },
         "Bucket":{
           "shape":"BucketName",
           "documentation":"<p/>",
