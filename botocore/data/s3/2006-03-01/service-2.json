@@ -150,7 +150,7 @@
       "name":"DeleteBucketMetricsConfiguration",
       "http":{
         "method":"DELETE",
-        "requestUri":"/{Bucket}?metrics",
+        "requestUri":"/{Bucket}?metrics&id={Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteBucketMetricsConfigurationRequest"},
@@ -354,7 +354,7 @@
       "name":"GetBucketMetricsConfiguration",
       "http":{
         "method":"GET",
-        "requestUri":"/{Bucket}?metrics"
+        "requestUri":"/{Bucket}?metrics&id={$Id}"
       },
       "input":{"shape":"GetBucketMetricsConfigurationRequest"},
       "output":{"shape":"GetBucketMetricsConfigurationOutput"},
@@ -767,7 +767,7 @@
       "name":"PutBucketMetricsConfiguration",
       "http":{
         "method":"PUT",
-        "requestUri":"/{Bucket}?metrics"
+        "requestUri":"/{Bucket}?metrics&id={Id}"
       },
       "input":{"shape":"PutBucketMetricsConfigurationRequest"},
       "documentation":"<p>Sets a metrics configuration (specified by the metrics configuration ID) for the bucket.</p>"
@@ -2411,7 +2411,7 @@
         "Id":{
           "shape":"MetricsId",
           "documentation":"<p>The ID used to identify the metrics configuration.</p>",
-          "location":"querystring",
+          "location":"uri",
           "locationName":"id"
         }
       }
@@ -3197,8 +3197,8 @@
         "Id":{
           "shape":"MetricsId",
           "documentation":"<p>The ID used to identify the metrics configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         }
       }
     },
@@ -5491,8 +5491,8 @@
           "shape":"Prefix",
           "documentation":"<p>The prefix used when evaluating a metrics filter.</p>"
         },
-        "Tag":{
-          "shape":"Tag",
+        "Tags":{
+          "shape":"TagSet",
           "documentation":"<p>The tag used when evaluating a metrics filter.</p>"
         },
         "And":{
@@ -6391,8 +6391,8 @@
         "Id":{
           "shape":"MetricsId",
           "documentation":"<p>The ID used to identify the metrics configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         },
         "MetricsConfiguration":{
           "shape":"MetricsConfiguration",
@@ -8138,6 +8138,7 @@
     "TagCount":{"type":"integer"},
     "TagSet":{
       "type":"list",
+	  "flattened":true,
       "member":{
         "shape":"Tag",
         "locationName":"Tag"
