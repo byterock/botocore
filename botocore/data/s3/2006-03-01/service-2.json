@@ -129,7 +129,7 @@
       "name":"DeleteBucketInventoryConfiguration",
       "http":{
         "method":"DELETE",
-        "requestUri":"/{Bucket}?inventory",
+        "requestUri":"/{Bucket}?inventory&id={Id}",
         "responseCode":204
       },
       "input":{"shape":"DeleteBucketInventoryConfigurationRequest"},
@@ -300,7 +300,7 @@
       "name":"GetBucketInventoryConfiguration",
       "http":{
         "method":"GET",
-        "requestUri":"/{Bucket}?inventory"
+        "requestUri":"/{Bucket}?inventory&id={Id}"
       },
       "input":{"shape":"GetBucketInventoryConfigurationRequest"},
       "output":{"shape":"GetBucketInventoryConfigurationOutput"},
@@ -728,7 +728,7 @@
       "name":"PutBucketInventoryConfiguration",
       "http":{
         "method":"PUT",
-        "requestUri":"/{Bucket}?inventory"
+        "requestUri":"/{Bucket}?inventory&id={Id}"
       },
       "input":{"shape":"PutBucketInventoryConfigurationRequest"},
       "documentation":"<p>Adds an inventory configuration (identified by the inventory ID) from the bucket.</p>"
@@ -2378,8 +2378,8 @@
         "Id":{
           "shape":"InventoryId",
           "documentation":"<p>The ID used to identify the inventory configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         }
       }
     },
@@ -3079,8 +3079,8 @@
         "Id":{
           "shape":"InventoryId",
           "documentation":"<p>The ID used to identify the inventory configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         }
       }
     },
@@ -6266,8 +6266,8 @@
         "Id":{
           "shape":"InventoryId",
           "documentation":"<p>The ID used to identify the inventory configuration.</p>",
-          "location":"querystring",
-          "locationName":"id"
+          "location":"uri",
+          "locationName":"Id"
         },
         "InventoryConfiguration":{
           "shape":"InventoryConfiguration",
