@@ -5491,8 +5491,8 @@
           "shape":"Prefix",
           "documentation":"<p>The prefix used when evaluating a metrics filter.</p>"
         },
-        "Tags":{
-          "shape":"TagSet",
+        "Tag":{
+          "shape":"Tag",
           "documentation":"<p>The tag used when evaluating a metrics filter.</p>"
         },
         "And":{
@@ -8138,7 +8138,6 @@
     "TagCount":{"type":"integer"},
     "TagSet":{
       "type":"list",
-	  "flattened":true,
       "member":{
         "shape":"Tag",
         "locationName":"Tag"
